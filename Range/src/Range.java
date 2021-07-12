@@ -36,7 +36,9 @@ public class Range {
             if (this.to >= range.to) {
                 return this;
             }
-        } else {
+        }
+
+        if (this.from >= range.from) {
             if (range.to >= this.to) {
                 return range;
             }
@@ -45,7 +47,8 @@ public class Range {
         return null;
     }
 
-    public Range getRangesUnion(Range range) {
+    public Range[] getRangesUnion(Range range) {
+
         return null;
     }
 }
