@@ -9,39 +9,30 @@ public class RangeMain {
         double number = 0.3;
 
         if (range1.isInside(number)) {
-            System.out.printf("Число %.2f находится в диапозоне от %.2f до %.2f%n", number, range1.getFrom(), range1.getTo());
+            System.out.printf("Число %.2f находится в диапозоне %s%n", number, range1);
         } else {
-            System.out.printf("Число %.2f не находится в диапозоне от %.2f до %.2f%n", number, range1.getFrom(), range1.getTo());
+            System.out.printf("Число %.2f не находится в диапозоне %s%n", number, range1);
         }
 
         Range range2 = new Range(0.2, 7.3);
 
-        range2.setFrom(3.1);
+        range2.setFrom(3.2);
         range2.setTo(6.5);
 
-        System.out.printf("Длина диапозона от %.2f до %.2f = %.2f%n", range2.getFrom(), range2.getTo(), range2.getLength());
+        System.out.printf("Длина диапозона %s = %.2f%n", range2, range2.getLength());
 
         Range intersection = range1.getIntersection(range2);
 
         if (intersection != null) {
-            System.out.printf("Диапозон пересечения интервалов = от %.2f до %.2f%n", intersection.getFrom(), intersection.getTo());
+            System.out.printf("Диапозон пересечения интервалов %s%n", intersection);
         } else {
             System.out.println("Пересечений нет.");
         }
 
-        Range[] union = range1.getUnion(range2);
-        for (Range range : union) {
-            System.out.printf("Диапозон объединения интервалов = от %.2f до %.2f%n", range.getFrom(), range.getTo());
-        }
+        System.out.print("Диапозон объединения интервалов ");
+        Range.printArray(range1.getUnion(range2));
 
-        Range[] complement = range1.getComplement(range2);
-
-        if (complement == null) {
-            System.out.println("Диапозон разности отсутствует.");
-        } else {
-            for (Range range : complement) {
-                System.out.printf("Диапозон разности интервалов = от %.2f до %.2f%n", range.getFrom(), range.getTo());
-            }
-        }
+        System.out.print("Диапозон разности интервалов ");
+        Range.printArray(range1.getDifference(range2));
     }
 }
