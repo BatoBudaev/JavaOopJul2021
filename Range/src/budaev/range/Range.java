@@ -42,14 +42,12 @@ public class Range {
 
         System.out.print("[");
 
-        if (array.length != 0) {
-            for (Range range : array) {
-                if (isFirstItem) {
-                    System.out.printf("%s", range);
-                    isFirstItem = false;
-                } else {
-                    System.out.printf(", %s", range);
-                }
+        for (Range range : array) {
+            if (isFirstItem) {
+                System.out.print(range);
+                isFirstItem = false;
+            } else {
+                System.out.print(", " + range);
             }
         }
 
@@ -57,11 +55,7 @@ public class Range {
     }
 
     public Range getIntersection(Range range) {
-        if ((to < range.from) || (range.to < from)) {
-            return null;
-        }
-
-        if ((Math.max(from, range.from) - Math.min(to, range.to)) == 0) {
+        if (((to < range.from) || (range.to < from)) || (Math.max(from, range.from) == Math.min(to, range.to))) {
             return null;
         }
 
