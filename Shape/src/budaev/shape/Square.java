@@ -1,7 +1,7 @@
 package budaev.shape;
 
 public class Square implements Shape {
-    double side;
+    private double side;
 
     public Square(double side) {
         this.side = side;
@@ -25,5 +25,32 @@ public class Square implements Shape {
     @Override
     public double getPerimeter() {
         return side * 4;
+    }
+
+    @Override
+    public String toString() {
+        return "Квадрат";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Square s = (Square) o;
+
+        return side == s.side;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 37;
+
+        return prime + Double.hashCode(side);
     }
 }
