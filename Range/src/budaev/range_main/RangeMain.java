@@ -17,7 +17,7 @@ public class RangeMain {
         Range range2 = new Range(0.2, 7.3);
 
         range2.setFrom(3.2);
-        range2.setTo(6.5);
+        range2.setTo(7.5);
 
         System.out.printf("Длина диапазона %s = %.2f%n", range2, range2.getLength());
 
