@@ -55,7 +55,7 @@ public class Range {
     }
 
     public Range getIntersection(Range range) {
-        if ((to <= range.from) || (range.to <= from)) {
+        if (to <= range.from || range.to <= from) {
             return null;
         }
 
@@ -63,7 +63,7 @@ public class Range {
     }
 
     public Range[] getUnion(Range range) {
-        if ((to < range.from) || (range.to < from)) {
+        if (to < range.from || range.to < from) {
             return new Range[]{new Range(from, to), new Range(range.from, range.to)};
         }
 
@@ -71,11 +71,11 @@ public class Range {
     }
 
     public Range[] getDifference(Range range) {
-        if ((from >= range.from) && (to <= range.to)) {
+        if (from >= range.from && to <= range.to) {
             return new Range[]{};
         }
 
-        if ((from < range.from) && (to > range.to)) {
+        if (from < range.from && to > range.to) {
             return new Range[]{new Range(from, range.from), new Range(range.to, to)};
         }
 
