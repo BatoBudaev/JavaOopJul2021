@@ -1,35 +1,30 @@
 package budaev.shape;
 
-public class Square implements Shape {
-    private double side;
-
-    public Square(double side) {
-        this.side = side;
-    }
+public record Square(double sideLength) implements Shape {
 
     @Override
     public double getWidth() {
-        return side;
+        return sideLength;
     }
 
     @Override
     public double getHeight() {
-        return side;
+        return sideLength;
     }
 
     @Override
     public double getArea() {
-        return side * side;
+        return sideLength * sideLength;
     }
 
     @Override
     public double getPerimeter() {
-        return side * 4;
+        return sideLength * 4;
     }
 
     @Override
     public String toString() {
-        return "Квадрат";
+        return "Квадрат со стороной " + sideLength;
     }
 
     @Override
@@ -38,19 +33,19 @@ public class Square implements Shape {
             return true;
         }
 
-        if (o == null || o.getClass() != this.getClass()) {
+        if (o == null || o.getClass() != getClass()) {
             return false;
         }
 
         Square s = (Square) o;
 
-        return side == s.side;
+        return sideLength == s.sideLength;
     }
 
     @Override
     public int hashCode() {
         final int prime = 37;
 
-        return prime + Double.hashCode(side);
+        return prime + Double.hashCode(sideLength);
     }
 }

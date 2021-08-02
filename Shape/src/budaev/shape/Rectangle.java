@@ -1,37 +1,30 @@
 package budaev.shape;
 
-public class Rectangle implements Shape {
-    private double side1;
-    private double side2;
-
-    public Rectangle(double side1, double side2) {
-        this.side1 = side1;
-        this.side2 = side2;
-    }
+public record Rectangle(double width, double height) implements Shape {
 
     @Override
     public double getWidth() {
-        return side1;
+        return width;
     }
 
     @Override
     public double getHeight() {
-        return side2;
+        return height;
     }
 
     @Override
     public double getArea() {
-        return side1 * side2;
+        return width * height;
     }
 
     @Override
     public double getPerimeter() {
-        return (side1 + side2) * 2;
+        return (width + height) * 2;
     }
 
     @Override
     public String toString() {
-        return "Прямоугльник";
+        return "Прямоугльник со сторонами " + width + " и " + height;
     }
 
     @Override
@@ -40,21 +33,21 @@ public class Rectangle implements Shape {
             return true;
         }
 
-        if (o == null || o.getClass() != this.getClass()) {
+        if (o == null || o.getClass() != getClass()) {
             return false;
         }
 
         Rectangle r = (Rectangle) o;
 
-        return side1 == r.side1 && side2 == r.side2;
+        return width == r.width && height == r.height;
     }
 
     @Override
     public int hashCode() {
         final int prime = 37;
         int hash = 1;
-        hash = prime * hash + Double.hashCode(side1);
-        hash = prime * hash + Double.hashCode(side2);
+        hash = prime * hash + Double.hashCode(width);
+        hash = prime * hash + Double.hashCode(height);
 
         return hash;
     }

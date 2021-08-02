@@ -1,21 +1,6 @@
 package budaev.shape;
 
-public class Triangle implements Shape {
-    private double x1;
-    private double y1;
-    private double x2;
-    private double y2;
-    private double x3;
-    private double y3;
-
-    public Triangle(double x1, double y1, double x2, double y2, double x3, double y3) {
-        this.x1 = x1;
-        this.y1 = y1;
-        this.x2 = x2;
-        this.y2 = y2;
-        this.x3 = x3;
-        this.y3 = y3;
-    }
+public record Triangle(double x1, double y1, double x2, double y2, double x3, double y3) implements Shape {
 
     @Override
     public double getWidth() {
@@ -34,20 +19,20 @@ public class Triangle implements Shape {
 
     @Override
     public double getPerimeter() {
-        double side1 = getSide(x1, x2, y1, y2);
-        double side2 = getSide(x1, x3, y1, y3);
-        double side3 = getSide(x2, x3, y2, y3);
+        double sideLength1 = getSideLength(x1, y1, x2, y2);
+        double sideLength2 = getSideLength(x1, y1, x3, y3);
+        double sideLength3 = getSideLength(x2, y2, x3, y3);
 
-        return side1 + side2 + side3;
+        return sideLength1 + sideLength2 + sideLength3;
     }
 
-    public double getSide(double x1, double x2, double y1, double y2) {
+    private static double getSideLength(double x1, double y1, double x2, double y2) {
         return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
     }
 
     @Override
     public String toString() {
-        return "Треугольник";
+        return String.format("Треугольник с координатами (%.1f ; %.1f), (%.1f ; %.1f), (%.1f ; %.1f)", x1, y1, x2, y2, y3, x3);
     }
 
     @Override
@@ -56,7 +41,7 @@ public class Triangle implements Shape {
             return true;
         }
 
-        if (o == null || o.getClass() != this.getClass()) {
+        if (o == null || o.getClass() != getClass()) {
             return false;
         }
 

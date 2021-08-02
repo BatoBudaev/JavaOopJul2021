@@ -1,11 +1,6 @@
 package budaev.shape;
 
-public class Circle implements Shape {
-    private double radius;
-
-    public Circle(double radius) {
-        this.radius = radius;
-    }
+public record Circle(double radius) implements Shape {
 
     @Override
     public double getWidth() {
@@ -29,7 +24,7 @@ public class Circle implements Shape {
 
     @Override
     public String toString() {
-        return "Окружность";
+        return "Окружность с радиусом " + radius;
     }
 
     @Override
@@ -38,7 +33,7 @@ public class Circle implements Shape {
             return true;
         }
 
-        if (o == null || o.getClass() != this.getClass()) {
+        if (o == null || o.getClass() != getClass()) {
             return false;
         }
 
