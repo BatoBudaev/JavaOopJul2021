@@ -44,7 +44,7 @@ public class ShapeMain {
     }
 
     public static Shape getSecondPerimeterShape(Shape[] shapes) {
-        if (shapes.length == 0) {
+        if (shapes.length <= 1) {
             return null;
         }
 

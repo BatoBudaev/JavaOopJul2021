@@ -1,6 +1,11 @@
 package budaev.shape;
 
-public record Square(double sideLength) implements Shape {
+public class Square implements Shape {
+    private final double sideLength;
+
+    public Square(double sideLength) {
+        this.sideLength = sideLength;
+    }
 
     @Override
     public double getWidth() {
