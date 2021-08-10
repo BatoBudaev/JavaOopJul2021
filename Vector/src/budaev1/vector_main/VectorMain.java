@@ -1,5 +1,3 @@
-package budaev.vector_main;
-
 import budaev.vector.Vector;
 
 public class VectorMain {
