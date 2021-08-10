@@ -1,4 +1,6 @@
-import budaev.vector.Vector;
+package budaev1.vector_main;
+
+import budaev1.vector.*;
 
 public class VectorMain {
     public static void main(String[] args) {

@@ -1,3 +1,5 @@
+package budaev1.vector;
+
 import java.util.Arrays;
 
 public class Vector {
