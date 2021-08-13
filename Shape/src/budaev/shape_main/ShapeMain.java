@@ -30,7 +30,7 @@ public class ShapeMain {
             System.out.println(shape.toString() + " - " + shape.hashCode());
         }
 
-        System.out.println(shapes[2].equals(shapes[4]));
+        System.out.println("Сравнение фигур: " + shapes[2].equals(shapes[4]));
     }
 
     public static Shape getMaxAreaShape(Shape[] shapes) {
