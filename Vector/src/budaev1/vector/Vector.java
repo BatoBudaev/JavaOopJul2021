@@ -55,7 +55,7 @@ public class Vector {
         vector = tempArray;
     }
 
-    private void getEqualLengthVectors(Vector vector1, Vector vector2) {
+    private static void getEqualLengthVectors(Vector vector1, Vector vector2) {
         if (vector1.getSize() == vector2.getSize()) {
             return;
         }
@@ -72,22 +72,26 @@ public class Vector {
     }
 
     public void addition(Vector otherVector) {
-        if (vector.length != otherVector.getSize()) {
-            getEqualLengthVectors(this, otherVector);
+        Vector tempVector = new Vector(otherVector);
+
+        if (vector.length != tempVector.getSize()) {
+            getEqualLengthVectors(this, tempVector);
         }
 
         for (int i = 0; i < vector.length; i++) {
-            vector[i] += otherVector.vector[i];
+            vector[i] += tempVector.vector[i];
         }
     }
 
-    public void subtraction(Vector otherVector) {
-        if (vector.length != otherVector.getSize()) {
-            getEqualLengthVectors(this, otherVector);
+    public void subtract(Vector otherVector) {
+        Vector tempVector = new Vector(otherVector);
+
+        if (vector.length != tempVector.getSize()) {
+            getEqualLengthVectors(this, tempVector);
         }
 
         for (int i = 0; i < vector.length; i++) {
-            vector[i] -= otherVector.vector[i];
+            vector[i] -= tempVector.vector[i];
         }
     }
 
@@ -111,11 +115,76 @@ public class Vector {
         return Math.sqrt(sum);
     }
 
-    public double getComponent(int index) {
+    public double getComponent(int index) throws IllegalArgumentException {
+        if (index < 0 || index > this.getSize() - 1) {
+            throw new IllegalArgumentException("Нет такого индекса");
+        }
+
         return vector[index];
     }
 
-    public void setComponent(double value, int index) {
+    public void setComponent(double value, int index) throws IllegalArgumentException {
+        if (index < 0 || index > this.getSize() - 1) {
+            throw new IllegalArgumentException("Нет такого индекса");
+        }
+
         vector[index] = value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (o == null || o.getClass() != getClass()) {
+            return false;
+        }
+
+        Vector v = (Vector) o;
+
+        return getSize() == v.getSize() && Arrays.equals(vector, v.vector);
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 37;
+
+        return prime + Arrays.hashCode(vector);
+    }
+
+    public static Vector additionVectors(Vector vector1, Vector vector2) {
+        Vector tempVector1 = new Vector(vector1);
+        Vector tempVector2 = new Vector(vector2);
+
+        tempVector1.addition(tempVector2);
+
+        return tempVector1;
+    }
+
+    public static Vector subtractVectors(Vector vector1, Vector vector2) {
+        Vector tempVector1 = new Vector(vector1);
+        Vector tempVector2 = new Vector(vector2);
+
+        tempVector1.subtract(tempVector2);
+
+        return tempVector1;
+    }
+
+    public static double scalarProduct(Vector vector1, Vector vector2) {
+        Vector tempVector1 = new Vector(vector1);
+        Vector tempVector2 = new Vector(vector2);
+
+        if (tempVector1.getSize() != tempVector2.getSize()) {
+            getEqualLengthVectors(tempVector1, tempVector2);
+        }
+
+        double scalarSum = 0;
+
+        for (int i = 0; i < tempVector1.getSize(); i++) {
+            scalarSum += tempVector1.vector[i] * tempVector2.vector[i];
+        }
+
+        return scalarSum;
     }
 }
