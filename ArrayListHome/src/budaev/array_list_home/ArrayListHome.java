@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 public class ArrayListHome {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         try (BufferedReader reader = new BufferedReader(new FileReader("ArrayListHome/src/input.txt"))) {
             ArrayList<String> linesList = new ArrayList<>();
             String line;
@@ -18,7 +18,7 @@ public class ArrayListHome {
             }
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден");
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Ошибка ввода-вывода");
         }
 
