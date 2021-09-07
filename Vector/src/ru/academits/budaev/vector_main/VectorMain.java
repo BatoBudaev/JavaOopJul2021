@@ -15,13 +15,13 @@ public class VectorMain {
         double[] array2 = {5, 4};
         Vector vector3 = new Vector(2, array2);
 
-        Vector resultingVector = Vector.getSum(vector2, vector3);
+        Vector resultingVector1 = Vector.getSum(vector2, vector3);
         vector2.add(vector3);
 
-        System.out.println("Сложение векторов " + resultingVector);
+        System.out.println("Сложение векторов " + resultingVector1);
         System.out.println("Сложение векторов статик методом " + vector2);
 
-        System.out.println("Сравнение векторов " + vector2.equals(resultingVector));
+        System.out.println("Сравнение векторов " + vector2.equals(resultingVector1));
         System.out.println("Хэш-код " + vector2.hashCode());
 
         vector2.reverse();
