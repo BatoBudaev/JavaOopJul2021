@@ -1,3 +1,6 @@
+/*
+    Реализовать класс Vector для векторов вещественных чисел размерности n.
+ */
 package ru.academits.budaev.vector_main;
 
 import ru.academits.budaev.vector.Vector;
@@ -18,8 +21,8 @@ public class VectorMain {
         Vector resultingVector1 = Vector.getSum(vector2, vector3);
         vector2.add(vector3);
 
-        System.out.println("Сложение векторов " + resultingVector1);
-        System.out.println("Сложение векторов статик методом " + vector2);
+        System.out.println("Сложение векторов статик методом " + resultingVector1);
+        System.out.println("Сложение векторов " + vector2);
 
         System.out.println("Сравнение векторов " + vector2.equals(resultingVector1));
         System.out.println("Хэш-код " + vector2.hashCode());
@@ -33,7 +36,7 @@ public class VectorMain {
         resultingVector2.setComponent(0, 100);
 
         int index = 0;
-        System.out.println("Получение компонеты по индексу " + index + " = " + resultingVector2.getComponent(index));
+        System.out.println("Получение компоненты по индексу " + index + " = " + resultingVector2.getComponent(index));
         System.out.println(resultingVector2);
         System.out.println("Получение длины вектора " + resultingVector2.getLength());
 

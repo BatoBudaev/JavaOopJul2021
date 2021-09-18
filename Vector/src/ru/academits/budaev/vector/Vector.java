@@ -13,8 +13,8 @@ public class Vector {
         components = new double[size];
     }
 
-    public Vector(Vector v) {
-        this(v.components);
+    public Vector(Vector vector) {
+        this(vector.components);
     }
 
     public Vector(double[] array) {
@@ -45,7 +45,7 @@ public class Vector {
     }
 
     private static void increaseSize(Vector vector1, Vector vector2) {
-        if (vector1.getSize() < vector2.getSize()) {
+        if (vector1.getSize() < vector2.components.length) {
             vector1.components = Arrays.copyOf(vector1.components, vector2.getSize());
         }
     }
