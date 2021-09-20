@@ -11,11 +11,11 @@ public class ListMain {
         singlyLinkedList1.addFirst(70);
         singlyLinkedList1.addFirst(80);
         singlyLinkedList1.addByIndex(3, 100);
-        singlyLinkedList1.setByIndex(4, 10);
+        System.out.println("Заменён элемент: " + singlyLinkedList1.setByIndex(4, 10));
 
         System.out.println("Первый элемент: " + singlyLinkedList1.getFirst());
         System.out.println(singlyLinkedList1);
-        System.out.println("Удалён элемент: " + singlyLinkedList1.removeByIndex(4));
+        System.out.println("Удалён элемент: " + singlyLinkedList1.removeByIndex(3));
         System.out.println(singlyLinkedList1);
 
         int index = 2;
