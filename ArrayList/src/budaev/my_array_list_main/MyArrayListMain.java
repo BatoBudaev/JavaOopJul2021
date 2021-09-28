@@ -78,5 +78,15 @@ public class MyArrayListMain {
 
         System.out.println("Очистка списка");
         myList1.clear();
+
+        Integer asd = null;
+        MyArrayList<Integer> myList4 = new MyArrayList<>(-0);
+        myList4.add(0, 100);
+        myList4.add(asd);
+        myList4.add(1, 102);
+        myList4.add(2, 103);
+
+        System.out.println("Индекс элемента " + asd + " = " + myList4.indexOf(asd));
+        System.out.println(myList4);
     }
 }
