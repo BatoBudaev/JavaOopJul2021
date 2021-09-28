@@ -24,7 +24,6 @@ public class ListMain {
         int number = 70;
         System.out.println("Удалено число " + number + " - " + singlyLinkedList1.removeByData(number));
         System.out.println(singlyLinkedList1);
-
         SinglyLinkedList<Integer> singlyLinkedList2 = singlyLinkedList1.copy();
         singlyLinkedList2.reverse();
 

@@ -29,11 +29,11 @@ public class SinglyLinkedList<T> {
 
     public T setByIndex(int index, T data) {
         checkIndex(index);
-        ListItem<T> previousItem = getItemByIndex(index);
-        T previousData = previousItem.getData();
-        previousItem.setData(data);
+        ListItem<T> item = getItemByIndex(index);
+        T oldData = item.getData();
+        item.setData(data);
 
-        return previousData;
+        return oldData;
     }
 
     public T removeByIndex(int index) {
@@ -64,7 +64,7 @@ public class SinglyLinkedList<T> {
             throw new IndexOutOfBoundsException("Невозможно вставить по индексу " + index + ". Допустимые значения [0-" + count + "]");
         }
 
-        if ((head == null) || (index == 0)) {
+        if (index == 0) {
             addFirst(data);
             return;
         }
@@ -94,16 +94,18 @@ public class SinglyLinkedList<T> {
         ListItem<T> previousItem = null;
 
         while (currentItem != null) {
-            if (currentItem.getData().equals(data)) {
-                if (previousItem == null) {
-                    head = head.getNext();
-                } else {
-                    previousItem.setNext(currentItem.getNext());
+            if (currentItem.getData() != null) {
+                if (currentItem.getData().equals(data)) {
+                    if (previousItem == null) {
+                        head = head.getNext();
+                    } else {
+                        previousItem.setNext(currentItem.getNext());
+                    }
+
+                    count--;
+
+                    return true;
                 }
-
-                count--;
-
-                return true;
             }
 
             previousItem = currentItem;
@@ -133,6 +135,11 @@ public class SinglyLinkedList<T> {
 
     public SinglyLinkedList<T> copy() {
         SinglyLinkedList<T> newList = new SinglyLinkedList<>();
+
+        if (count == 0){
+            return newList;
+        }
+
         newList.count = count;
         ListItem<T> previousItem = new ListItem<>(head.getData());
         newList.head = previousItem;
