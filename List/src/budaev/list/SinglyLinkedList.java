@@ -1,6 +1,7 @@
 package budaev.list;
 
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class SinglyLinkedList<T> {
     private ListItem<T> head;
@@ -29,6 +30,7 @@ public class SinglyLinkedList<T> {
 
     public T setByIndex(int index, T data) {
         checkIndex(index);
+
         ListItem<T> item = getItemByIndex(index);
         T oldData = item.getData();
         item.setData(data);
@@ -94,18 +96,16 @@ public class SinglyLinkedList<T> {
         ListItem<T> previousItem = null;
 
         while (currentItem != null) {
-            if (currentItem.getData() != null) {
-                if (currentItem.getData().equals(data)) {
-                    if (previousItem == null) {
-                        head = head.getNext();
-                    } else {
-                        previousItem.setNext(currentItem.getNext());
-                    }
-
-                    count--;
-
-                    return true;
+            if (Objects.equals(currentItem.getData(), data)) {
+                if (previousItem == null) {
+                    head = head.getNext();
+                } else {
+                    previousItem.setNext(currentItem.getNext());
                 }
+
+                count--;
+
+                return true;
             }
 
             previousItem = currentItem;
@@ -136,7 +136,7 @@ public class SinglyLinkedList<T> {
     public SinglyLinkedList<T> copy() {
         SinglyLinkedList<T> newList = new SinglyLinkedList<>();
 
-        if (count == 0){
+        if (count == 0) {
             return newList;
         }
 

@@ -29,5 +29,15 @@ public class ListMain {
 
         System.out.println("Развернутый список: " + singlyLinkedList2);
         System.out.println("Неразвернутый список: " + singlyLinkedList1);
+
+        SinglyLinkedList<Integer> singlyLinkedList3 = new SinglyLinkedList<>();
+        singlyLinkedList3.addFirst(50);
+        singlyLinkedList3.addFirst(null);
+        singlyLinkedList3.addFirst(51);
+        singlyLinkedList3.addFirst(52);
+
+        System.out.println(singlyLinkedList3);
+        singlyLinkedList3.removeByData(null);
+        System.out.println(singlyLinkedList3);
     }
 }
