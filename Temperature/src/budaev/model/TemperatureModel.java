@@ -10,7 +10,7 @@ public class TemperatureModel implements TemperatureModelInterface {
     private final List<TemperatureViewInterface> Listeners;
 
     public TemperatureModel() {
-        Listeners = new ArrayList<TemperatureViewInterface>();
+        Listeners = new ArrayList<>();
     }
 
     @Override
