@@ -1,6 +1,6 @@
-package budaev.main;
+package budaev.lambda_main;
 
-import budaev.person.Person;
+import budaev.lambda_person.Person;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,42 +21,38 @@ public class Main {
                 new Person("Sergey", 52)
         );
 
-        //А
+        // А
 
-        String uniqueNames = persons.stream()
+        List<String> uniqueNamesList = persons.stream()
                 .map(Person::getName)
                 .distinct()
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.toList());
 
-        System.out.println(uniqueNames);
+        System.out.println(uniqueNamesList);
 
-        //Б
+        // Б
 
-        String uniqueNamesWithFormat = persons.stream()
-                .map(Person::getName)
-                .distinct()
-                .collect(Collectors.joining(", ", "Имена: ", ""));
+        String uniqueNamesWithFormat = uniqueNamesList.stream()
+                .collect(Collectors.joining(", ", "Имена: ", "."));
 
         System.out.println(uniqueNamesWithFormat);
 
-        //В
+        // В
 
         Double youngPersonsAverageAge = persons.stream()
                 .filter(p -> p.getAge() < 18)
-                .collect(Collectors.averagingInt(Person::getAge)
-                );
+                .collect(Collectors.averagingInt(Person::getAge));
 
-        System.out.println(youngPersonsAverageAge);
+        System.out.println("Средний возраст людей младше 18: " + youngPersonsAverageAge);
 
-        //Г
+        // Г
 
-        Map<String, Double> personsMap = persons.stream()
-                .collect(Collectors.groupingBy(Person::getName, Collectors.averagingInt(Person::getAge)
-                ));
+        Map<String, Double> averageAgeMap = persons.stream()
+                .collect(Collectors.groupingBy(Person::getName, Collectors.averagingInt(Person::getAge)));
 
-        System.out.println(personsMap);
+        System.out.println(averageAgeMap);
 
-        //Д
+        // Д
 
         String names = persons.stream()
                 .filter(p -> p.getAge() >= 20 && p.getAge() <= 45)

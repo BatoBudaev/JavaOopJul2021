@@ -1,4 +1,4 @@
-package budaev.person;
+package budaev.lambda_person;
 
 public class Person {
     private final String name;
