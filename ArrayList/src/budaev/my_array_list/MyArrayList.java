@@ -128,13 +128,9 @@ public class MyArrayList<T> implements List<T> {
     }
 
     private void increaseCapacity() {
-        int newLength = size;
+        int length = size == 0 ? DEFAULT_CAPACITY : size * 2;
 
-        if (size == 0) {
-            newLength = DEFAULT_CAPACITY;
-        }
-
-        items = Arrays.copyOf(items, newLength * 2);
+        items = Arrays.copyOf(items, length);
     }
 
     @Override
@@ -170,20 +166,17 @@ public class MyArrayList<T> implements List<T> {
     public boolean addAll(int index, Collection<? extends T> c) {
         checkIndexForAdd(index);
 
-        int newSize = c.size() + size;
-
-        if (newSize == 0) {
+        if (c.size() == 0) {
             return false;
         }
 
-        if (newSize > items.length) {
-            ensureCapacity(newSize);
-        }
+        int newSize = c.size() + size;
+        int movedItemsCount = size - index;
 
-        int movedItemsNumber = size - index;
+        ensureCapacity(newSize);
 
-        if (movedItemsNumber > 0) {
-            System.arraycopy(items, index, items, index + c.size(), movedItemsNumber);
+        if (movedItemsCount > 0) {
+            System.arraycopy(items, index, items, index + c.size(), movedItemsCount);
         }
 
         int i = index;
@@ -249,7 +242,7 @@ public class MyArrayList<T> implements List<T> {
 
     private void checkIndex(int index) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Индекс " + index + " отсутствует. Границы списка [0-" + (size - 1) + "]");
+            throw new IndexOutOfBoundsException("Индекс " + index + " отсутствует. Допустимые значения [0-" + (size - 1) + "]");
         }
     }
 
@@ -293,17 +286,9 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public int indexOf(Object o) {
-        if (o == null) {
-            for (int i = 0; i < size; i++) {
-                if (items[i] == null) {
-                    return i;
-                }
-            }
-        } else {
-            for (int i = 0; i < size; i++) {
-                if (o.equals(items[i])) {
-                    return i;
-                }
+        for (int i = 0; i < size; i++) {
+            if (Objects.equals(o, items[i])) {
+                return i;
             }
         }
 
@@ -312,17 +297,9 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public int lastIndexOf(Object o) {
-        if (o == null) {
-            for (int i = size - 1; i >= 0; i--) {
-                if (items[i] == null) {
-                    return i;
-                }
-            }
-        } else {
-            for (int i = size - 1; i >= 0; i--) {
-                if (o.equals(items[i])) {
-                    return i;
-                }
+        for (int i = size - 1; i >= 0; i--) {
+            if (Objects.equals(o, items[i])) {
+                return i;
             }
         }
 
