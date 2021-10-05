@@ -32,10 +32,10 @@ public class Main {
 
         // Б
 
-        String uniqueNamesWithFormat = uniqueNamesList.stream()
+        String uniqueNamesString = uniqueNamesList.stream()
                 .collect(Collectors.joining(", ", "Имена: ", "."));
 
-        System.out.println(uniqueNamesWithFormat);
+        System.out.println(uniqueNamesString);
 
         // В
 
