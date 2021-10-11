@@ -262,6 +262,7 @@ public class MyArrayList<T> implements List<T> {
     @Override
     public T set(int index, T item) {
         checkIndex(index);
+
         T oldItem = items[index];
         items[index] = item;
 
