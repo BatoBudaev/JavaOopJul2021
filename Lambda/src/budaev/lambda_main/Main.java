@@ -18,7 +18,8 @@ public class Main {
                 new Person("Anna", 25),
                 new Person("Mikhail", 44),
                 new Person("Ivan", 70),
-                new Person("Sergey", 52)
+                new Person("Sergey", 52),
+                new Person("Bato", 29)
         );
 
         // А
