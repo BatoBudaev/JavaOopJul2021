@@ -28,6 +28,7 @@ public class ArrayListHome {
         for (int i = 0; i < numbersList1.size(); i++) {
             if (numbersList1.get(i) % 2 == 0) {
                 numbersList1.remove(i);
+                
                 i--;
             }
         }
