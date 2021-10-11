@@ -6,6 +6,7 @@ public class ListMain {
     public static void main(String[] args) {
         SinglyLinkedList<Integer> singlyLinkedList1 = new SinglyLinkedList<>();
 
+        singlyLinkedList1.addFirst(40);
         singlyLinkedList1.addFirst(50);
         singlyLinkedList1.addFirst(60);
         singlyLinkedList1.addFirst(70);
