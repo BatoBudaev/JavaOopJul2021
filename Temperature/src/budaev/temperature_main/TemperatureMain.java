@@ -1,8 +1,8 @@
 package budaev.temperature_main;
 
-import budaev.controller.TemperatureController;
-import budaev.model.TemperatureModel;
-import budaev.model.TemperatureModelInterface;
+import budaev.temperature.controller.TemperatureController;
+import budaev.temperature.model.TemperatureModel;
+import budaev.temperature.model.TemperatureModelInterface;
 
 public class TemperatureMain {
     public static void main(String[] args) {

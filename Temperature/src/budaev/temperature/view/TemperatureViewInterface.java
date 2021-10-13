@@ -1,4 +1,4 @@
-package budaev.view;
+package budaev.temperature.view;
 
 public interface TemperatureViewInterface {
     void start();

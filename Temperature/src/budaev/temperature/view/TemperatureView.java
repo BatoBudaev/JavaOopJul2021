@@ -1,8 +1,9 @@
-package budaev.view;
+package budaev.temperature.view;
 
-import budaev.controller.TemperatureControllerInterface;
+import budaev.temperature.controller.TemperatureControllerInterface;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class TemperatureView implements TemperatureViewInterface {
     TemperatureControllerInterface controller;
@@ -10,18 +11,21 @@ public class TemperatureView implements TemperatureViewInterface {
     private JLabel label;
     private String scaleFrom;
     private String scaleTo;
+    String[] temperatureScales;
 
-    public TemperatureView(TemperatureControllerInterface controller) {
+    public TemperatureView(TemperatureControllerInterface controller, String[] temperatureScales) {
         this.controller = controller;
+        this.temperatureScales = temperatureScales;
     }
 
     @Override
     public void start() {
         SwingUtilities.invokeLater(() -> {
-            frame = new JFrame("Temperature application");
+            frame = new JFrame("Перевод температуры");
             frame.setSize(400, 200);
             frame.setLocationRelativeTo(null);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setMinimumSize(new Dimension(400, 200));
             frame.setVisible(true);
 
             JPanel panel = new JPanel();
@@ -33,28 +37,19 @@ public class TemperatureView implements TemperatureViewInterface {
 
             JTextField textField = new JTextField(20);
             label = new JLabel("Температура");
-            String[] comboBoxItems = {
-                    "Цельсия",
-                    "Фаренгейт",
-                    "Кельвин"
-            };
-            scaleFrom = comboBoxItems[0];
-            scaleTo = comboBoxItems[0];
+            scaleFrom = temperatureScales[0];
+            scaleTo = temperatureScales[0];
 
-            JComboBox<String> comboBox1 = new JComboBox<>(comboBoxItems);
+            JComboBox<String> comboBox1 = new JComboBox<>(temperatureScales);
             comboBox1.addActionListener(e -> scaleFrom = (String) comboBox1.getSelectedItem());
 
-            JComboBox<String> comboBox2 = new JComboBox<>(comboBoxItems);
+            JComboBox<String> comboBox2 = new JComboBox<>(temperatureScales);
             comboBox2.addActionListener(e -> scaleTo = (String) comboBox2.getSelectedItem());
 
             JButton button = new JButton("Перевести");
             button.addActionListener(e -> {
                 try {
                     double temperature = Double.parseDouble(textField.getText());
-
-                    if (scaleFrom.equals(scaleTo)) {
-                        return;
-                    }
 
                     controller.convertTemperature(temperature, scaleFrom, scaleTo);
                 } catch (NumberFormatException exception) {
