@@ -8,7 +8,19 @@ public class Matrix {
     private Vector[] rows;
 
     public Matrix(Vector[] rows) {
-        this.rows = rows;
+        if (rows.length == 0) {
+            throw new IllegalArgumentException("Размер массива векторов должен быть больше 0");
+        }
+
+        this.rows = new Vector[rows.length];
+
+        for (int i = 0; i < rows.length; i++) {
+            this.rows[i] = new Vector(rows[i].getSize());
+
+            for (int j = 0; j < rows[i].getSize(); j++) {
+                this.rows[i].setComponent(j, rows[i].getComponent(j));
+            }
+        }
     }
 
     public Matrix(int rowsCount, int columnsCount) {
@@ -28,7 +40,11 @@ public class Matrix {
     }
 
     public Matrix(Matrix matrix) {
-        this(matrix.rows);
+        this.rows = new Vector[matrix.getRowsCount()];
+
+        for (int i = 0; i < matrix.getRowsCount(); i++) {
+            this.rows[i] = new Vector(matrix.getRow(i));
+        }
     }
 
     public Matrix(double[][] array) {
@@ -217,5 +233,36 @@ public class Matrix {
             rows[i].subtract(matrix.rows[i]);
         }
     }
-    //TODO статические методы
+
+    public static Matrix getSum(Matrix matrix1, Matrix matrix2) {
+        matrix1.checkMatrixSizes(matrix2);
+
+        Matrix resultingMatrix = new Matrix(matrix1);
+        resultingMatrix.add(matrix2);
+
+        return resultingMatrix;
+    }
+
+    public static Matrix getDifference(Matrix matrix1, Matrix matrix2) {
+        matrix1.checkMatrixSizes(matrix2);
+
+        Matrix resultingMatrix = new Matrix(matrix1);
+        resultingMatrix.add(matrix2);
+
+        return resultingMatrix;
+    }
+
+    public static Matrix getMultiplication(Matrix matrix1, Matrix matrix2) {
+        matrix1.checkMatrixSizes(matrix2);
+
+        double[][] array = new double[matrix1.getRowsCount()][matrix2.getColumnsCount()];
+
+        for (int i = 0; i < matrix1.getRowsCount(); i++) {
+            for (int j = 0; j < matrix2.getColumnsCount(); j++) {
+                array[i][j] = Vector.getScalarProduct(matrix1.rows[i], matrix2.getColumn(j));
+            }
+        }
+
+        return new Matrix(array);
+    }
 }

@@ -47,5 +47,16 @@ public class MatrixMain {
 
         matrix2.subtract(matrix4);
         System.out.println("Вычитание матриц " + matrix2);
+
+        System.out.println(matrix2);
+        System.out.println(matrix4);
+        Matrix matrix5 = Matrix.getSum(matrix2, matrix4);
+        System.out.println("Сложение матриц статик методом " + matrix5);
+
+        Matrix matrix6 = Matrix.getDifference(matrix2, matrix4);
+        System.out.println("Вычитание матриц статик методом " + matrix6);
+
+        Matrix matrix7 = Matrix.getMultiplication(matrix2, matrix4);
+        System.out.println("Умножение матриц статик методом " + matrix7);
     }
 }
