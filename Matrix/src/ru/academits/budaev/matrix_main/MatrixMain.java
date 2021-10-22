@@ -1,6 +1,6 @@
-package budaev.matrix_main;
+package ru.academits.budaev.matrix_main;
 
-import budaev.matrix.Matrix;
+import ru.academits.budaev.matrix.Matrix;
 import ru.academits.budaev.vector.Vector;
 
 public class MatrixMain {
@@ -16,7 +16,7 @@ public class MatrixMain {
 
         double[] array2 = {1, 3, 7, 5, 10};
         Vector[] vectorsArray = new Vector[2];
-        vectorsArray[0] = new Vector(5);
+        vectorsArray[0] = new Vector(2);
         vectorsArray[1] = new Vector(array2);
         Matrix matrix3 = new Matrix(vectorsArray);
         System.out.println("Матрица 3 " + matrix3);
@@ -56,7 +56,7 @@ public class MatrixMain {
         Matrix matrix6 = Matrix.getDifference(matrix2, matrix4);
         System.out.println("Вычитание матриц статик методом " + matrix6);
 
-        Matrix matrix7 = Matrix.getMultiplication(matrix2, matrix4);
+        Matrix matrix7 = Matrix.getProduct(matrix2, matrix4);
         System.out.println("Умножение матриц статик методом " + matrix7);
     }
 }
