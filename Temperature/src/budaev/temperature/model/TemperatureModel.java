@@ -1,40 +1,23 @@
 package budaev.temperature.model;
 
-import budaev.temperature.view.TemperatureViewInterface;
+import budaev.temperature.view.TemperatureView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TemperatureModel implements TemperatureModelInterface {
     private double temperature;
-    private final List<TemperatureViewInterface> listeners;
-    private final String[] temperatureScales = {
-            "Цельсия",
-            "Кельвин",
-            "Фаренгейт"
-    };
+    private final List<TemperatureView> listeners;
+    private final TemperatureScale[] temperatureScales;
 
-    public TemperatureModel() {
+    public TemperatureModel(TemperatureScale[] temperatureScales) {
         listeners = new ArrayList<>();
+        this.temperatureScales = temperatureScales;
     }
 
     @Override
-    public void convertTemperature(double temperature, String scaleFrom, String scaleTo) {
-        Celsius celsius = new Celsius();
-        Kelvin kelvin = new Kelvin();
-        Fahrenheit fahrenheit = new Fahrenheit();
-
-        switch (scaleFrom) {
-            case "Цельсия" -> this.temperature = celsius.convertToCelsius(temperature);
-            case "Кельвин" -> this.temperature = kelvin.convertToCelsius(temperature);
-            case "Фаренгейт" -> this.temperature = fahrenheit.convertToCelsius(temperature);
-        }
-
-        switch (scaleTo) {
-            case "Цельсия" -> this.temperature = celsius.convertFromCelsius(this.temperature);
-            case "Кельвин" -> this.temperature = kelvin.convertFromCelsius(this.temperature);
-            case "Фаренгейт" -> this.temperature = fahrenheit.convertFromCelsius(this.temperature);
-        }
+    public void convertTemperature(double temperature, int scaleFromIndex, int scaleToIndex) {
+        this.temperature = temperatureScales[scaleToIndex].convertFromCelsius(temperatureScales[scaleFromIndex].convertToCelsius(temperature));
 
         updateObservers();
     }
@@ -45,25 +28,31 @@ public class TemperatureModel implements TemperatureModelInterface {
         return temperature;
     }
 
-    public String[] getTemperatureScales() {
-        return temperatureScales;
+    public ArrayList<String> getTemperatureScaleNames() {
+        ArrayList<String> TemperatureScaleNames = new ArrayList<>();
+
+        for (TemperatureScale s : temperatureScales) {
+            TemperatureScaleNames.add(s.toString());
+        }
+
+        return TemperatureScaleNames;
     }
 
     @Override
-    public void register(TemperatureViewInterface listener) {
+    public void register(TemperatureView listener) {
         if (!listeners.contains(listener)) {
             listeners.add(listener);
         }
     }
 
     @Override
-    public void unregister(TemperatureViewInterface listener) {
+    public void unregister(TemperatureObserver listener) {
         listeners.remove(listener);
     }
 
     @Override
     public void updateObservers() {
-        for (TemperatureViewInterface o : listeners) {
+        for (TemperatureView o : listeners) {
             o.update(temperature);
         }
     }

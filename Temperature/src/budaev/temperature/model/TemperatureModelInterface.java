@@ -1,17 +1,19 @@
 package budaev.temperature.model;
 
-import budaev.temperature.view.TemperatureViewInterface;
+import budaev.temperature.view.TemperatureView;
+
+import java.util.ArrayList;
 
 public interface TemperatureModelInterface {
     double getTemperature();
 
-    String[] getTemperatureScales();
+    ArrayList<String> getTemperatureScaleNames();
 
-    void convertTemperature(double temperature, String scaleFrom, String scaleTo);
+    void convertTemperature(double temperature, int scaleFrom, int scaleTo);
 
-    void register(TemperatureViewInterface observer);
+    void register(TemperatureView observer);
 
-    void unregister(TemperatureViewInterface observer);
+    void unregister(TemperatureObserver observer);
 
     void updateObservers();
 }

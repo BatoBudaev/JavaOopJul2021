@@ -2,20 +2,22 @@ package budaev.temperature.controller;
 
 import budaev.temperature.model.TemperatureModelInterface;
 import budaev.temperature.view.TemperatureView;
-import budaev.temperature.view.TemperatureViewInterface;
 
 public class TemperatureController implements TemperatureControllerInterface {
     private final TemperatureModelInterface model;
 
-    public TemperatureController(TemperatureModelInterface model) {
+
+    public TemperatureController(TemperatureModelInterface model, TemperatureView view) {
         this.model = model;
-        TemperatureViewInterface temperatureView = new TemperatureView(this, model.getTemperatureScales());
-        model.register(temperatureView);
-        temperatureView.start();
+        model.register(view);
+
+        view.setController(this);
+        view.setTemperatureScalesNames(model.getTemperatureScaleNames());
+        view.start();
     }
 
     @Override
-    public void convertTemperature(double temperature, String scaleFrom, String scaleTo) {
-        model.convertTemperature(temperature, scaleFrom, scaleTo);
+    public void convertTemperature(double temperature, int scaleFromIndex, int scaleToIndex) {
+        model.convertTemperature(temperature, scaleFromIndex, scaleToIndex);
     }
 }
