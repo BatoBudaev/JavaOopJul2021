@@ -11,5 +11,5 @@ public interface TemperatureView {
 
     void setTemperatureScalesNames(ArrayList<String> temperatureScaleNames);
 
-    void update(double temperature);
+    void updateTemperature(double temperature);
 }

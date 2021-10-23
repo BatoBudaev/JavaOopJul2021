@@ -11,7 +11,7 @@ public interface TemperatureModelInterface {
 
     void convertTemperature(double temperature, int scaleFrom, int scaleTo);
 
-    void register(TemperatureView observer);
+    void register(TemperatureObserver observer);
 
     void unregister(TemperatureObserver observer);
 

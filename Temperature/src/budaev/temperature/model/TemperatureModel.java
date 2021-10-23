@@ -1,13 +1,11 @@
 package budaev.temperature.model;
 
-import budaev.temperature.view.TemperatureView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class TemperatureModel implements TemperatureModelInterface {
     private double temperature;
-    private final List<TemperatureView> listeners;
+    private final List<TemperatureObserver> listeners;
     private final TemperatureScale[] temperatureScales;
 
     public TemperatureModel(TemperatureScale[] temperatureScales) {
@@ -39,7 +37,7 @@ public class TemperatureModel implements TemperatureModelInterface {
     }
 
     @Override
-    public void register(TemperatureView listener) {
+    public void register(TemperatureObserver listener) {
         if (!listeners.contains(listener)) {
             listeners.add(listener);
         }
@@ -52,7 +50,7 @@ public class TemperatureModel implements TemperatureModelInterface {
 
     @Override
     public void updateObservers() {
-        for (TemperatureView o : listeners) {
+        for (TemperatureObserver o : listeners) {
             o.update(temperature);
         }
     }

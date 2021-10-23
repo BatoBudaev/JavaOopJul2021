@@ -1,7 +1,6 @@
 package budaev.temperature.view;
 
 import budaev.temperature.controller.TemperatureControllerInterface;
-import budaev.temperature.model.TemperatureObserver;
 
 import javax.swing.*;
 import java.awt.*;
@@ -86,7 +85,7 @@ public class SwingTemperatureView implements TemperatureView {
     }
 
     @Override
-    public void update(double temperature) {
+    public void updateTemperature(double temperature) {
         label.setText(String.valueOf(temperature));
     }
 }
