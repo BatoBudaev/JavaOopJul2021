@@ -17,7 +17,6 @@ public class TreeMain {
         tree1.add(null);
         tree1.add(500);
 
-
         Tree<String> tree2 = new Tree<>(Comparator.comparing(String::toString));
         tree2.add("asd");
         tree2.add("c");
