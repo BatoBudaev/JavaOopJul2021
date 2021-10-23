@@ -81,7 +81,7 @@ public class SwingTemperatureView implements TemperatureView {
     }
 
     @Override
-    public void updateTemperature(double temperature) {
+    public void update(double temperature) {
         label.setText(String.valueOf(temperature));
     }
 }

@@ -1,15 +1,18 @@
 package budaev.temperature.view;
 
 import budaev.temperature.controller.TemperatureControllerInterface;
+import budaev.temperature.model.TemperatureListener;
 
 import java.util.ArrayList;
 
-public interface TemperatureView {
+public interface TemperatureView extends TemperatureListener {
     void start();
 
     void setController(TemperatureControllerInterface controller);
 
     void setTemperatureScalesNames(ArrayList<String> temperatureScaleNames);
 
-    void updateTemperature(double temperature);
+    @Override
+    default void update(double temperature) {
+    }
 }
