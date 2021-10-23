@@ -1,7 +1,5 @@
 package budaev.temperature.model;
 
-import budaev.temperature.view.TemperatureView;
-
 import java.util.ArrayList;
 
 public interface TemperatureModelInterface {

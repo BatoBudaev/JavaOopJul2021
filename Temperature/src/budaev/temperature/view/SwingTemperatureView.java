@@ -12,10 +12,6 @@ public class SwingTemperatureView implements TemperatureView {
     private JLabel label;
     private ArrayList<String> temperatureScaleNames;
 
-    public SwingTemperatureView() {
-
-    }
-
     public void setController(TemperatureControllerInterface controller) {
         this.controller = controller;
     }
