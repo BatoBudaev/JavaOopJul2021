@@ -1,5 +1,5 @@
 package budaev.temperature.model;
 
-public interface TemperatureObserver {
+public interface TemperatureListener {
     void update(double temperature);
 }

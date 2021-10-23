@@ -5,7 +5,7 @@ import java.util.List;
 
 public class TemperatureModel implements TemperatureModelInterface {
     private double temperature;
-    private final List<TemperatureObserver> listeners;
+    private final List<TemperatureListener> listeners;
     private final TemperatureScale[] temperatureScales;
 
     public TemperatureModel(TemperatureScale[] temperatureScales) {
@@ -37,20 +37,20 @@ public class TemperatureModel implements TemperatureModelInterface {
     }
 
     @Override
-    public void register(TemperatureObserver listener) {
+    public void register(TemperatureListener listener) {
         if (!listeners.contains(listener)) {
             listeners.add(listener);
         }
     }
 
     @Override
-    public void unregister(TemperatureObserver listener) {
+    public void unregister(TemperatureListener listener) {
         listeners.remove(listener);
     }
 
     @Override
     public void updateObservers() {
-        for (TemperatureObserver o : listeners) {
+        for (TemperatureListener o : listeners) {
             o.update(temperature);
         }
     }

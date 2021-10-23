@@ -1,10 +1,10 @@
 package budaev.temperature.controller;
 
 import budaev.temperature.model.TemperatureModelInterface;
-import budaev.temperature.model.TemperatureObserver;
+import budaev.temperature.model.TemperatureListener;
 import budaev.temperature.view.TemperatureView;
 
-public class TemperatureController implements TemperatureControllerInterface, TemperatureObserver {
+public class TemperatureController implements TemperatureControllerInterface, TemperatureListener {
     private final TemperatureModelInterface model;
     private final TemperatureView view;
 

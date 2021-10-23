@@ -9,9 +9,9 @@ public interface TemperatureModelInterface {
 
     void convertTemperature(double temperature, int scaleFrom, int scaleTo);
 
-    void register(TemperatureObserver observer);
+    void register(TemperatureListener observer);
 
-    void unregister(TemperatureObserver observer);
+    void unregister(TemperatureListener observer);
 
     void updateObservers();
 }
