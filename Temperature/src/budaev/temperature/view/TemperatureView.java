@@ -11,8 +11,4 @@ public interface TemperatureView extends TemperatureListener {
     void setController(TemperatureControllerInterface controller);
 
     void setTemperatureScalesNames(ArrayList<String> temperatureScaleNames);
-
-    @Override
-    default void update(double temperature) {
-    }
 }
