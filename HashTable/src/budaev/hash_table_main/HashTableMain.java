@@ -7,6 +7,7 @@ public class HashTableMain {
         HashTable<Integer> table1 = new HashTable<>();
         table1.add(123);
         table1.add(222);
+        table1.add(333);
         table1.add(1);
         table1.add(2);
         table1.add(3);
