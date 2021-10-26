@@ -177,17 +177,17 @@ public class Matrix {
         int columnsCount = getColumnsCount();
 
         if (rowsCount != columnsCount) {
-            throw new UnsupportedOperationException("Матрица не квадртаная");
+            throw new UnsupportedOperationException("Матрица не квадратная");
         }
 
         if (rowsCount == 1) {
-            return getColumn(0).getComponent(0);
+            return rows[0].getComponent(0);
         }
 
         double determinant = 0;
 
         for (int i = 0; i < rowsCount; i++) {
-            determinant += Math.pow(-1, i) * getColumn(0).getComponent(i) * getMinor(this, i).getDeterminant();
+            determinant += Math.pow(-1, i) * rows[i].getComponent(0) * getMinor(this, i).getDeterminant();
         }
 
         return determinant;
