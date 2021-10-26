@@ -6,7 +6,6 @@ import budaev.temperature.view.TemperatureView;
 public class TemperatureController implements TemperatureControllerInterface {
     private final TemperatureModelInterface model;
 
-
     public TemperatureController(TemperatureModelInterface model, TemperatureView view) {
         this.model = model;
         model.register(view);

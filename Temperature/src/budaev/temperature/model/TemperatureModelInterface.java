@@ -13,5 +13,5 @@ public interface TemperatureModelInterface {
 
     void unregister(TemperatureListener observer);
 
-    void updateObservers();
+    void updateListeners();
 }

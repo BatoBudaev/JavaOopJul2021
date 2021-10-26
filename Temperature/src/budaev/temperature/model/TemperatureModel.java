@@ -17,7 +17,7 @@ public class TemperatureModel implements TemperatureModelInterface {
     public void convertTemperature(double temperature, int scaleFromIndex, int scaleToIndex) {
         this.temperature = temperatureScales[scaleToIndex].convertFromCelsius(temperatureScales[scaleFromIndex].convertToCelsius(temperature));
 
-        updateObservers();
+        updateListeners();
     }
 
 
@@ -49,7 +49,7 @@ public class TemperatureModel implements TemperatureModelInterface {
     }
 
     @Override
-    public void updateObservers() {
+    public void updateListeners() {
         for (TemperatureListener o : listeners) {
             o.update(temperature);
         }
